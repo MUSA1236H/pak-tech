@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pak-Tech</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+        body {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid red;
+        }
+        header h1 {
+            font-size: 38px;
+            color: red;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        header h1 span {
+            color: white;
+        }
+        header input {
+            margin-top: 15px;
+            padding: 10px;
+            width: 300px;
+            border: 1px solid red;
+            border-radius: 5px;
+            background-color: #222;
+            color: white;
+        }
+        h2 {
+            color: red;
+            margin: 30px 0 10px 20px;
+            border-bottom: 1px solid red;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            background-color: #111;
+            border: 1px solid #333;
+            border-left: 4px solid red;
+            padding: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .product:hover {
+            background-color: #1a1a1a;
+            transform: scale(1.02);
+            border-left: 4px solid #ff3c3c;
+        }
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .product h3 {
+            color: #fff;
+            margin: 10px 0 5px;
+        }
+        .product p {
+            color: red;
+            margin: 5px 0;
+        }
+        .buy-button {
+            background-color: red;
+            color: white;
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .buy-button:hover {
+            background-color: #ff3c3c;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            background-color: #111;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid red;
+            width: 60%;
+            color: #fff;
+            border-radius: 10px;
+        }
+        .close {
+            color: red;
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #ff3c3c;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Pak-<span>Tech</span></h1>
+    <input type="text" id="search" placeholder="Search laptops or PCs..." onkeyup="searchItems()" />
+</header>
+
+<main id="product-list">
+
+    <h2>Laptops</h2>
+    <div class="grid">
+        <div class="product" onclick="showSpecs('Acer Aspire 7: Ryzen 5, 512GB SSD, GTX 1650, 8GB RAM')">
+            <img src="images/lappics.jpg/acer 3050.webp">
+            <h3>Acer Aspire 7</h3>
+            <p>Rs. 98,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Lenovo IdeaPad Gaming 3: Ryzen 5, 512GB SSD, GTX 1650, 8GB RAM')">
+            <img src="images/lappics.jpg/lenovo.webp">
+            <h3>Lenovo IdeaPad Gaming 3</h3>
+            <p>Rs. 95,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('HP Pavilion x360: i5, 512GB SSD, Touchscreen, 8GB RAM')">
+            <img src="images/lappics.jpg/hp x360 pavillion core i3.webp">
+            <h3>HP Pavilion x360</h3>
+            <p>Rs. 92,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Dell Inspiron 15: i5, 512GB SSD, 8GB RAM')">
+            <img src="images/lappics.jpg/dell inspiron 15.webp">
+            <h3>Dell Inspiron 15</h3>
+            <p>Rs. 89,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('HP Envy: i7, 1TB SSD, 16GB RAM, 2-in-1')">
+            <img src="images/lappics.jpg/hp envy.webp">
+            <h3>HP Envy</h3>
+            <p>Rs. 110,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('MacBook Air M2: M2 Chip, 512GB SSD, 8GB RAM, 13-inch Retina')">
+            <img src="images/lappics.jpg/macbook.webp">
+            <h3>MacBook Air M2</h3>
+            <p>Rs. 260,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('HP EliteBook 840: i5, 512GB SSD, 16GB RAM')">
+            <img src="images/lappics.jpg/hp elite book 840.jpg">
+            <h3>HP EliteBook 840</h3>
+            <p>Rs. 125,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Acer Swift 3: i5, 512GB SSD, 8GB RAM')">
+            <img src="images/lappics.jpg/acer swift three.jpg">
+            <h3>Acer Swift 3</h3>
+            <p>Rs. 97,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+    </div>
+
+    <h2>Desktop PCs</h2>
+    <div class="grid">
+        <div class="product" onclick="showSpecs('Ryzen 5 Gaming PC: Ryzen 5, 16GB RAM, 512GB SSD, GTX 1660')">
+            <img src="images/lappics.jpg/ryzen 5 3060 gaming pc.webp">
+            <h3>Ryzen 5 Gaming PC</h3>
+            <p>Rs. 105,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Intel Core i7 12th Gen PC: i7 12700, 16GB RAM, 1TB SSD, RTX 3060')">
+            <img src="images/lappics.jpg/intel i7 rtx 3060 12 gen gaming pc.webp">
+            <h3>Intel Core i7 12th Gen PC</h3>
+            <p>Rs. 130,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('HP Pavilion Gaming: Ryzen 7, 1TB SSD, 16GB RAM, GTX 1660 Super')">
+            <img src="images/lappics.jpg/hp pc.webp">
+            <h3>HP Pavilion Gaming Desktop</h3>
+            <p>Rs. 115,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Custom Ryzen 5 5600: 16GB RAM, 512GB SSD, RTX 3060')">
+            <img src="images/lappics.jpg/custom built pc ryzen 5 5600.webp">
+            <h3>Custom Ryzen 5 5600 Build</h3>
+            <p>Rs. 140,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('SkyTech Blaze II: Ryzen 5, 16GB RAM, 1TB SSD, GTX 1660')">
+            <img src="images/lappics.jpg/skytech.jfif">
+            <h3>SkyTech Blaze II</h3>
+            <p>Rs. 125,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Intel NUC Mini PC: i5, 512GB SSD, 16GB RAM, Tiny Form Factor')">
+            <img src="images/lappics.jpg/intel mini pc.webp">
+            <h3>Intel NUC Mini PC</h3>
+            <p>Rs. 95,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('MSI Modern AM242: All-in-One, i5, 512GB SSD, 16GB RAM, 24-inch Screen')">
+            <img src="images/lappics.jpg/msi modern 14.avif">
+            <h3>MSI Modern AM242</h3>
+            <p>Rs. 150,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+        <div class="product" onclick="showSpecs('Lenovo ThinkCentre Tower PC: i5, 512GB SSD, 16GB RAM')">
+            <img src="images/lappics.jpg/lenovo think centre tower.jfif">
+            <h3>Lenovo ThinkCentre Tower</h3>
+            <p>Rs. 115,000</p>
+            <a href="https://www.daraz.pk/" target="_blank" class="buy-button">Buy Now</a>
+        </div>
+    </div>
+</main>
+
+<div id="specsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="specsText"></p>
+    </div>
+</div>
+
+<script>
+    function searchItems() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let items = document.querySelectorAll(".product");
+        items.forEach(item => {
+            const title = item.querySelector("h3").textContent.toLowerCase();
+            item.style.display = title.includes(input) ? "block" : "none";
+        });
+    }
+    function showSpecs(specs) {
+        document.getElementById("specsText").textContent = specs;
+        document.getElementById("specsModal").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("specsModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
